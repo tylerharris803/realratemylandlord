@@ -1,0 +1,43 @@
+{% extends 'basepages.html' %}
+{% load static %}
+{% block content %}
+<div class="addreviews" >
+    <section class="page-section" id="addlandlord">
+        <div class="container" style="background-color: white">
+            <br><br>
+            <div class="row text-center">
+                <h1>View All Property Ratings</h1>
+                <br><br>
+                <table>
+                    <tr style="text-align: center;color: white;background-color:green;border: 1px solid black;font-size: 14px;">
+                        <th class="col-md-1" style="border: 1px solid black">Property</th>
+                        <th class="col-md-1" style="border: 1px solid black">Rating</th>
+                        <th class="col-md-1" style="border: 1px solid black">Landlord</th>
+                        <th class="col-md-1" style="border: 1px solid black">Date</th>
+                        <th class="col-md-1" style="border: 1px solid black">Property Condition</th>
+                        <th class="col-md-6" style="border: 1px solid black">Other Notes</th>
+                        <th class="col-md-1" style="border: 1px solid black">User</th>
+                        <th class="col-md-1" style="border: 1px solid black">Edit</th>
+                        <th class="col-md-1" style="border: 1px solid black">Delete</th>
+                    </tr>
+                    {% for rate in ratings %}
+                    <tr style="text-align: center;background-color:white;border: 1px solid black;font-size: 14px;">
+                        <td><a href="{% url 'propertydetail' detailID=rate.properties.id  %}">{{rate.properties.property_name}}</a></td>
+                        <td>{{rate.rating}}</td>
+                        <td><a href="{% url 'landlorddetail' detailID=rate.properties.landlord.id %}">{{rate.properties.landlord.management_company}}</a></td>
+                        <td>{{rate.date_submitted}}</td>
+                        <td>{{rate.property_condition}}</td>
+                        <td style="font-size: 12px">{{rate.other_notes}}</td>
+                        <td>{{rate.users}}</td>
+                        <td><a class="btn btn-primary" style="color:white;background-color: black" href="{% url 'editreviews' editID=rate.id %}">Edit</a></td>
+                        <td><a class="btn btn-primary" style="color:white;background-color: black" href="{% url 'delete' deleteID=rate.id %}">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <br><br><br>
+        </div>
+    </section>
+</div>
+
+{% endblock %} 

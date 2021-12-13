@@ -1,0 +1,89 @@
+{% extends 'basepages.html' %}
+{% load static %}
+{% block content %}
+<div class="viewreviews">
+    <div class="container" style="background-color: white">
+        <br><br>
+        <div class="row text-center">
+            <h1 class="mx-auto my-0 text-uppercase">Add Rating</h1>
+            <h2 class="text-white-50 mx-auto mt-2 mb-5"></h2>
+            <br><br>
+            <section class="page-section" id="services">
+                <div class="container">
+                        <div class="row text-center">
+                            <span class="fa-stack fa-4x">
+                                <i class="fas fa-circle fa-stack-2x" style="color:black"></i>
+                                <i class="fas fa-home fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <h4 class="my-3">Submit Your New Rating Here</h4><br><br>
+                            <form class="text-muted" method="post" action="{% url 'viewreviews' %} ">
+                                {% csrf_token %}
+                                <label for="nickname">User Nickname</label>
+                                    <input type="text" id="nickname" name="nickname" width="75px"><br><br>
+                                <label for="property" style="text-align: left;">Property Name
+                                    <select name="property" id="property" width="75px">
+                                        <option selected disabled> -- Select Property -- </option>
+                                        {% for prop in proplist %}
+                                        <option value="{{ prop.property_name }}">{{ prop.property_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </label>
+                                <br><br>
+                                <label for="rating">Overall Rating from 0-10:
+                                    <input type="number" id="rating" name="rating" default="0" min="0" max="10" width="15px"></label><br><br>
+                                <fieldset>
+                                    <label for="condition" style="text-align: left;">Property Condition
+                                        <select name="condition" id="condition" width="75px">
+                                            <option selected disabled> -- Select Condition -- </option>
+                                            <option value="Great">Great</option>
+                                            <option value="Good">Good</option>
+                                            <option value="Okay">Okay</option>
+                                            <option value="Poor">Poor</option>
+                                            <option value="Terrible">Terrible</option>
+                                        </select>
+                                    </label>
+                                    <br><br><br><br>
+                                    <h5 style="color:green">Please check the following categories that you have experienced issues with during your time at this residence: </h5>
+                                    <br><br>
+                                    <label for="poormanagement">Poor Management</label>
+                                        <input type="checkbox" id="poormanagement" name="poormanagement" width="75px"><br><br>
+                                    <label for="hiddenfees">Hidden Fees</label>
+                                        <input type="checkbox" id="hiddenfees" name="hiddenfees" width="75px"><br><br>
+                                    <label for="privacy">Lack of Privacy
+                                        <input type="checkbox" id="privacy" name="privacy" width="75px"></label><br><br>
+                                    <label for="funds">Unreturned Funds</label>
+                                        <input type="checkbox" id="funds" name="funds" width="75px">
+                                    <br><br>
+                                    <label for="utilities">Utilities</label>
+                                        <input type="checkbox" id="utilities" name="utilities" width="75px" maxlength="2"><br><br>
+                                    <label for="safety">Safety Concerns</label>
+                                        <input type="checkbox" id="safety" name="safety" width="10px"><br><br>
+                                    <label for="appliances">Appliances</label>
+                                        <input type="checkbox" id="appliances" name="appliances" width="75px"><br><br>
+                                    <label for="mold">Mold</label>
+                                        <input type="checkbox" id="mold" name="mold" width="10px"><br><br>
+                                    <label for="pests">Pests</label>
+                                        <input type="checkbox" id="pests" name="pests" width="75px"><br><br>
+                                    <label for="neigh">Neighborhood Problems</label>
+                                        <input type="checkbox" id="neigh" name="neigh" width="10px"><br><br>
+                                    <label for="parking">Parking</label>
+                                        <input type="checkbox" id="parking" name="parking" width="75px"><br><br>
+                                    <label for="badcont">Bad Contracts</label>
+                                        <input type="checkbox" id="badcont" name="badcont" width="10px"><br><br>
+                                    <label for="rent">Sudden Change in Rent</label>
+                                        <input type="checkbox" id="rent" name="rent" width="75px"><br><br>
+                                </fieldset>
+                                <label for="notes">Additional Notes:</label>
+                                    <textarea id="notes" name="notes" maxlength="1000" width="100px" height="100px"></textarea><br><br>
+                                    <br><br>
+                                <button type="submit" class="btn btn-primary" style="background-color: black">Submit Rating</button><br><br><br>
+                            </form>
+                            <br><br><br><br>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+</div>
+{% endblock %}

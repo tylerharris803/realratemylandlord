@@ -1,0 +1,58 @@
+{% extends 'basepages.html' %}
+{% load static %}
+{% block content %}
+<div class="addreviews" >
+    <section class="page-section" id="services">
+        <div class="container" style="background-color: white">
+            <br>
+            <div class="row text-center">
+                <br><br>
+                <h1 style="font-family: Helvetica;">Add Property</h1>
+                <p></p>
+                <br>
+                <h4 style="font-family: Helvetica; color:green">If your property is in the list below, click next.</h4>
+                <br><br>
+                <div class="container">
+                    <br>
+                    {% for prop in propies %}
+                    <li style="font-family: Helvetica; color:gray; font-size:18px">{{ prop.property_name }}</li>
+                    {% endfor %}
+                    <br><br>
+                    <a class="btn btn-primary" href="{% url 'addreviews' %}" style="background-color: black">Next</a>
+                    <br><br>
+                </div>
+                <br>
+                <div class="container">
+                    <br><br><br><br>
+                    <h4 style="font-family: Helvetica; color:green">If not, please add a new landlord here.</h4>
+                    <br><br>
+                    <form class="text-muted" method="post" action="{% url 'addreviews' %}">
+                        {% csrf_token %}
+                        <label for="landlord">Landlord/Management Company
+                        <select name="landlord" id="landlord" width="75px">
+                            <option value=""> -- Select Management Company -- </option>
+                            {% for land in landies %}
+                            <option value="{{ land.management_company }}">{{ land.management_company }}</option>
+                            {% endfor %}
+                        </select></label><br><br>
+                        <label for="propertyName">Property Name
+                        <input type="text" id="propertyName" name="propertyName" maxlength="50" width="75px"></label><br><br>
+                        <label for="streetAddress">Street Address
+                        <input type="text" id="streetAddress" name="streetAddress" maxlength="50" width="75px"></label><br><br>
+                        <label for="city">City
+                        <input type="text" id="city" name="city" maxlength="30" width="75px"></label><br><br>
+                        <label for="state">State
+                        <input type="text" id="state" name="state" maxlength="2" width="75px"></label><br><br>
+                        <label for="zip">Zip Code
+                        <input type="text" id="zip" name="zip" maxlength="10" width="75px"></label><br><br>
+                        <button type="submit" class="btn btn-primary" style="background-color: black">Create New</button>
+                        <br>
+                    </form>
+                    <br>
+                </div>
+                <br>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

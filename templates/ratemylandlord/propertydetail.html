@@ -1,0 +1,73 @@
+
+{% extends 'basepages.html' %}
+{% load static %}
+{% block content %}
+<div class="addreviews" >
+    <section class="page-section" id="addlandlord">
+        <div class="container" style="background-color: white">
+            <br>
+            <div class="container">
+                <div class="row text-center">
+                    <h1>Property Details</h1>
+                    <br><br>
+                    <h2>{{property.property_name}}</h2>
+                    <br><br>
+                    <p>Landlord Name: <a href="{% url 'landlorddetail' detailID=property.landlord.id %}">{{property.landlord.first_name}} {{property.landlord.last_name}}</a></p>
+                    <p>Street Address: {{property.street_address}}</p>
+                    <p>City: {{property.city}}</p>
+                    <p>State: {{property.state}}</p>
+                    <p>Zipcode: {{property.zipcode}}</p>
+                    <br><br><br><br>
+                    <h2>Property Rating Details</h2>
+                    <br><br><br><br>
+                    <table>
+                        <tr style="text-align: center;border: 1px solid black;font-size: 12px; background-color:green; color:white;">
+                            <th class="col-md-0.5" style="border: 1px solid black">Rating</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Date</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Property Condition</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Poor<br>Management</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Hidden<br> Fees</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Lack of Privacy</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Unreturned Funds</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Utility Issues</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Safety Concerns</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Appliance Issues</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Mold</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Pests</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Neighborhood Problems</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Parking Issues</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Bad Contracts</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">Change In Rent</th>
+                            <th class="col-md-9" style="border: 1px solid black">Other Notes</th>
+                            <th class="col-md-0.5" style="border: 1px solid black">User</th>
+                        </tr>
+                        {% for rate in ratings %}
+                        <tr style="text-align: center;background-color:white;border: 1px solid black;font-size: 14px;">
+                            <td>{{rate.rating}}</td>
+                            <td>{{rate.date_submitted}}</td>
+                            <td>{{rate.property_condition}}</td>
+                            <td>{% if rate.poor_management == True or rate.poor_management == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.hidden_fees == True or rate.hidden_fees == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.lack_of_privacy == True or rate.lack_of_privacy == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.unreturned_funds == True or rate.unreturned_funds == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.utilities == True or rate.utilities == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.safety_concerns == True or rate.safety_concerns == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.appliance_issues == True or rate.appliance_issues == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.mold == True or rate.mold == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.pests == True or rate.pests == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.neighborhood_problems == True or rate.neighborhood_problems == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.parking == True or rate.parking == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.bad_contracts == True or rate.bad_contracts == "true" %}✓{% else %}-{% endif %}</td>
+                            <td>{% if rate.change_in_rent == True or rate.change_in_rent == "true" %}✓{% else %}-{% endif %}</td>
+                            <td style="font-size: 12px">{{rate.other_notes}}</td>
+                            <td>{{rate.users}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <br><br>
+        </div>
+    </section>
+</div>
+{%endblock%}

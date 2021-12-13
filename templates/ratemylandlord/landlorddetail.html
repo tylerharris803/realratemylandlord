@@ -1,0 +1,37 @@
+{% extends 'basepages.html' %}
+{% load static %}
+{% block content %}
+<div class="addreviews" >
+    <section class="page-section" id="addlandlord">
+        <div class="container" style="background-color: white">
+            <br>
+            <div class="container">
+                <div class="row text-center">
+                    <h1>Landlord/Management Company Details</h1>
+                    <br><br>
+                    <h3 style="color:green;">{{landlord.management_company}}</h3>
+                    <br><br>
+                    <h5>Name of Landlord: {{landlord.first_name}} {{landlord.last_name}}</h5>
+                    <br><br>
+                    <h2>Properties Under {{landlord.management_company}} Management</h2>
+                    <br><br>
+                    <table>
+                        <tr style="text-align: center;border: 1px solid black; font-size:20px;">
+                            <th class="col-md-4" style="border: 1px solid black; background-color: green; color:white;">Property Name</th>
+                            <th class="col-md-4" style="border: 1px solid black; background-color: green; color:white;">Property Address</th>
+                        </tr>
+                        {% for prop in properties %}
+                            <tr style="text-align: center;background-color:white;border: 1px solid black;font-size: 16px;">
+                                <td class="col-md-4" style="border: 1px solid black"><a href="{% url 'propertydetail' detailID=prop.id %}">{{prop.property_name}}</a></td>
+                                <td class="col-md-4" style="border: 1px solid black">{{prop.street_address}}, {{prop.city}}, {{prop.state}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    <br><br>
+                </div>
+            </div>
+            <br><br>
+        </div>
+    </section>
+</div>
+{%endblock%}
